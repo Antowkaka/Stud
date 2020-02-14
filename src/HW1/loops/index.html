@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing 'loops' block</title>
+    <script src="task1.js"></script>
+    <script src="task2.js"></script>
+    <script src="task3.js"></script>
+    <script src="task4.js"></script>
+    <script src="task5.js"></script>
+    <script src="task6.js"></script>
+    <!-- подключаем стили Mocha, для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <!-- подключаем библиотеку Mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <!-- настраиваем Mocha: предстоит BDD-тестирование -->
+    <script>
+        mocha.setup('bdd');
+    </script>
+
+    <!-- подключаем chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <!-- в chai есть много всего, выносим assert в глобальную область -->
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+<body>
+<!-- в элементе с id="mocha" будут результаты тестов -->
+<div id="mocha"></div>
+<script>
+    describe('summEvenNumbTest', function(){
+        it('run function ', function(){
+            assert.equal(summEvenNumb(), 2450);
+        });
+        it('input: 5 ', function(){
+            assert.equal(summEvenNumb(5), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(summEvenNumb("string"), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(summEvenNumb(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(summEvenNumb(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(summEvenNumb(NaN), undefined);
+        });
+    });
+    describe('isSimpleNumbTest', function(){
+        it('input: 1 ', function(){
+            assert.equal(isSimpleNumb(1), 'True');
+        });
+        it('input: 2 ', function(){
+            assert.equal(isSimpleNumb(2), 'True');
+        });
+        it('input: 3 ', function(){
+            assert.equal(isSimpleNumb(3), 'True');
+        });
+        it('input: 4 ', function(){
+            assert.equal(isSimpleNumb(4), 'False');
+        });
+        it('input: 6 ', function(){
+            assert.equal(isSimpleNumb(6), 'False');
+        });
+        it('input: 13 ', function(){
+            assert.equal(isSimpleNumb(13), 'True');
+        });
+        it('input: undefined ', function(){
+            assert.equal(isSimpleNumb(undefined), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(isSimpleNumb(null), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(isSimpleNumb(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(isSimpleNumb("string"), undefined);
+        });
+    });
+    describe('seqSelectTest', function(){
+        it('input: 4 ', function(){
+            assert.equal(seqSelect(4), 2);
+        });
+        it('input: 7 ', function(){
+            assert.equal(seqSelect(7), 3);
+        });
+        it('input: null ', function(){
+            assert.equal(seqSelect(null), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(seqSelect(NaN), undefined);
+        });
+         it('input: "string" ', function(){
+             assert.equal(seqSelect("string"), undefined);
+         });
+         it('input: undefined ', function(){
+             assert.equal(seqSelect(undefined), undefined);
+         });
+    });
+    describe('binarySearcMethodTest', function(){
+        it('input: 120 ', function(){
+            assert.equal(binarySearcMethod(120), 11);
+        });
+        it('input: 64 ', function(){
+            assert.equal(binarySearcMethod(64), 8);
+        });
+        it('input: undefined ', function(){
+            assert.equal(binarySearcMethod(undefined), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(binarySearcMethod(null), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(binarySearcMethod(NaN), undefined);
+        });
+    });
+   /* describe('rateToScoreTest', function(){
+        it('input: 0 ', function(){
+            assert.equal(rateToScore(0), 'Оценка "F"');
+        });
+        it('input: 19 ', function(){
+            assert.equal(rateToScore(19), 'Оценка "F"');
+        });
+        it('input: 20 ', function(){
+            assert.equal(rateToScore(20), 'Оценка "E"');
+        });
+        it('input: 39 ', function(){
+            assert.equal(rateToScore(39), 'Оценка "E"');
+        });
+        it('input: 40 ', function(){
+            assert.equal(rateToScore(40), 'Оценка "D"');
+        });
+        it('input: 59 ', function(){
+            assert.equal(rateToScore(59), 'Оценка "D"');
+        });
+        it('input: 60 ', function(){
+            assert.equal(rateToScore(60), 'Оценка "C"');
+        });
+        it('input: 74 ', function(){
+            assert.equal(rateToScore(74), 'Оценка "C"');
+        });
+        it('input: 75 ', function(){
+            assert.equal(rateToScore(75), 'Оценка "B"');
+        });
+        it('input: 89 ', function(){
+            assert.equal(rateToScore(89), 'Оценка "B"');
+        });
+        it('input: 90 ', function(){
+            assert.equal(rateToScore(90), 'Оценка "A"');
+        });
+        it('input: 100 ', function(){
+            assert.equal(rateToScore(100), 'Оценка "A"');
+        });
+        it('input: -10 ', function(){
+            assert.equal(rateToScore(-10), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(rateToScore(undefined), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(rateToScore(null), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(rateToScore(NaN), undefined);
+        });
+    });*/
+</script>
+<!-- запустить тесты! -->
+<script>
+    mocha.run();
+</script>
+</body>
+</html>

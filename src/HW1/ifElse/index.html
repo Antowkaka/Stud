@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing 'ifElse' block</title>
+    <script src="task1.js"></script>
+    <script src="task2.js"></script>
+    <script src="task3.js"></script>
+    <script src="task4.js"></script>
+    <script src="task5.js"></script>
+    <!-- подключаем стили Mocha, для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <!-- подключаем библиотеку Mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <!-- настраиваем Mocha: предстоит BDD-тестирование -->
+    <script>
+        mocha.setup('bdd');
+    </script>
+
+    <!-- подключаем chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <!-- в chai есть много всего, выносим assert в глобальную область -->
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+<body>
+    <!-- в элементе с id="mocha" будут результаты тестов -->
+    <div id="mocha"></div>
+    <script>
+        describe('multiplyOrSumTest', function(){
+            it('input: 5 + 10 ', function(){
+                assert.equal(multiplyOrSum(5, 10), 15);
+            });
+            it('input: 6 + 10 ', function(){
+                assert.equal(multiplyOrSum(6, 10), 60);
+            });
+            it('input: -5 + 10 ', function(){
+                assert.equal(multiplyOrSum(-5, 10), 5);
+            });
+            it('input: -6 + 10 ', function(){
+                assert.equal(multiplyOrSum(-6, 10), -60);
+            });
+            it('input: null + 10 ', function(){
+                assert.equal(multiplyOrSum(null, 10), null);
+            });
+            it('input: 5 + null ', function(){
+                assert.equal(multiplyOrSum(5, null), null);
+            });
+            it('input: undefined + 10 ', function(){
+                assert.equal(multiplyOrSum(undefined, 10), undefined);
+            });
+            it('input: 5 + undefined ', function(){
+                assert.equal(multiplyOrSum(5, undefined), undefined);
+            });
+            it('input: NaN + 10 ', function(){
+                assert.equal(multiplyOrSum(NaN, 10), undefined);
+            });
+            it('input: 5 + NaN ', function(){
+                assert.equal(multiplyOrSum(NaN, 10), undefined);
+            });
+        });
+        describe('howQuadrantIsItTest', function(){
+            it('input: 1  1 ', function(){
+                assert.equal(howQuadrantIsIt(1, 1), 'Первая четверть');
+            });
+            it('input: -1  1 ', function(){
+                assert.equal(howQuadrantIsIt(-1, 1), 'Вторая четверть');
+            });
+            it('input: 1 -1 ', function(){
+                assert.equal(howQuadrantIsIt(1, -1), 'Третья четверть');
+            });
+            it('input: -1 -1 ', function(){
+                assert.equal(howQuadrantIsIt(-1, -1), 'Четвёртая четверть');
+            });
+            it('input: null 1 ', function(){
+                assert.equal(howQuadrantIsIt(null, 1), undefined);
+            });
+            it('input: 1 null ', function(){
+                assert.equal(howQuadrantIsIt(1, null), undefined);
+            });
+            it('input: undefined 1 ', function(){
+                assert.equal(howQuadrantIsIt(undefined, 1), undefined);
+            });
+            it('input: 1 undefined ', function(){
+                assert.equal(howQuadrantIsIt(1, undefined), undefined);
+            });
+            it('input: NaN 1 ', function(){
+                assert.equal(howQuadrantIsIt(NaN, 1), undefined);
+            });
+            it('input: 1 NaN ', function(){
+                assert.equal(howQuadrantIsIt(1, NaN), undefined);
+            });
+        });
+        describe('summPositiveNumbTest', function(){
+            it('input: [1, 1, 4] ', function(){
+                assert.equal(summPositiveNumb([1, 1, 4]), 6);
+            });
+            it('input: [1, undefined, 4] ', function(){
+                assert.equal(summPositiveNumb([1, undefined, 4]), undefined);
+            });
+            it('input: [1, 1, null] ', function(){
+                assert.equal(summPositiveNumb([1, 1, null]), undefined);
+            });
+            it('input: [NaN, 1, 4] ', function(){
+                assert.equal(summPositiveNumb([NaN, 1, 4]), undefined);
+            });
+           /* it('input: null 1 ', function(){
+                assert.equal(summPositiveNumb(null, 1), undefined);
+            });
+            it('input: 1 null ', function(){
+                assert.equal(summPositiveNumb(1, null), undefined);
+            });
+            it('input: undefined 1 ', function(){
+                assert.equal(summPositiveNumb(undefined, 1), undefined);
+            });
+            it('input: 1 undefined ', function(){
+                assert.equal(summPositiveNumb(1, undefined), undefined);
+            });
+            it('input: NaN 1 ', function(){
+                assert.equal(summPositiveNumb(NaN, 1), undefined);
+            });
+            it('input: 1 NaN ', function(){
+                assert.equal(summPositiveNumb(1, NaN), undefined);
+            });*/
+        });
+        describe('maxMultiplOrSummTest', function(){
+            it('input: 8, 5, 4 ', function(){
+                assert.equal(maxMultiplOrSumm(8, 5, 4), 160);
+            });
+            it('input: 0, 6, 8 ', function(){
+                assert.equal(maxMultiplOrSumm(0, 6, 8), 14);
+            });
+            it('input: 3, undefined, 7 ', function(){
+                assert.equal(maxMultiplOrSumm(3, undefined, 7), undefined);
+            });
+            it('input: 2, 9, null ', function(){
+                assert.equal(maxMultiplOrSumm(2, 9, null), undefined);
+            });
+            it('input: NaN, 3, 6 ', function(){
+                assert.equal(maxMultiplOrSumm(NaN, 3, 6), undefined);
+            });
+        });
+        describe('rateToScoreTest', function(){
+            it('input: 0 ', function(){
+                assert.equal(rateToScore(0), 'Оценка "F"');
+            });
+            it('input: 19 ', function(){
+                assert.equal(rateToScore(19), 'Оценка "F"');
+            });
+            it('input: 20 ', function(){
+                assert.equal(rateToScore(20), 'Оценка "E"');
+            });
+            it('input: 39 ', function(){
+                assert.equal(rateToScore(39), 'Оценка "E"');
+            });
+            it('input: 40 ', function(){
+                assert.equal(rateToScore(40), 'Оценка "D"');
+            });
+            it('input: 59 ', function(){
+                assert.equal(rateToScore(59), 'Оценка "D"');
+            });
+            it('input: 60 ', function(){
+                assert.equal(rateToScore(60), 'Оценка "C"');
+            });
+            it('input: 74 ', function(){
+                assert.equal(rateToScore(74), 'Оценка "C"');
+            });
+            it('input: 75 ', function(){
+                assert.equal(rateToScore(75), 'Оценка "B"');
+            });
+            it('input: 89 ', function(){
+                assert.equal(rateToScore(89), 'Оценка "B"');
+            });
+            it('input: 90 ', function(){
+                assert.equal(rateToScore(90), 'Оценка "A"');
+            });
+            it('input: 100 ', function(){
+                assert.equal(rateToScore(100), 'Оценка "A"');
+            });
+            it('input: -10 ', function(){
+                assert.equal(rateToScore(-10), undefined);
+            });
+            it('input: undefined ', function(){
+                assert.equal(rateToScore(undefined), undefined);
+            });
+            it('input: null ', function(){
+                assert.equal(rateToScore(null), undefined);
+            });
+            it('input: NaN ', function(){
+                assert.equal(rateToScore(NaN), undefined);
+            });
+        });
+    </script>
+    <!-- запустить тесты! -->
+    <script>
+        mocha.run();
+    </script>
+</body>
+</html>
