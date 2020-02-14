@@ -32,6 +32,7 @@
 <!-- в элементе с id="mocha" будут результаты тестов -->
 <div id="mocha"></div>
 <script>
+    let i = 0;
     describe('summEvenNumbTest', function(){
         it('run function ', function(){
             assert.equal(summEvenNumb(), 2450);
@@ -121,56 +122,57 @@
             assert.equal(binarySearcMethod(NaN), undefined);
         });
     });
-   /* describe('rateToScoreTest', function(){
-        it('input: 0 ', function(){
-            assert.equal(rateToScore(0), 'Оценка "F"');
+    describe('factorFindTest', function(){
+        it('input: 1 ', function(){
+            assert.equal(factorFind(1), 1);
         });
-        it('input: 19 ', function(){
-            assert.equal(rateToScore(19), 'Оценка "F"');
+        it('input: 5 ', function(){
+            assert.equal(factorFind(5), 120);
         });
-        it('input: 20 ', function(){
-            assert.equal(rateToScore(20), 'Оценка "E"');
+        it('input NaN: "NaN" ', function() {
+            assert.equal(factorFind(NaN), 'NaN');
         });
-        it('input: 39 ', function(){
-            assert.equal(rateToScore(39), 'Оценка "E"');
+        it('input undefined: undefined ', function() {
+            assert.equal(factorFind(undefined), undefined);
         });
-        it('input: 40 ', function(){
-            assert.equal(rateToScore(40), 'Оценка "D"');
+        it('input null: undefined ', function() {
+            assert.equal(factorFind(null), undefined);
         });
-        it('input: 59 ', function(){
-            assert.equal(rateToScore(59), 'Оценка "D"');
+    });
+    describe('summNumberTest', function(){
+        it('input: 999 ', function(){
+            assert.equal(summNumber(999), 27);
         });
-        it('input: 60 ', function(){
-            assert.equal(rateToScore(60), 'Оценка "C"');
+        it('input: 5 ', function(){
+            assert.equal(summNumber(23), 5);
         });
-        it('input: 74 ', function(){
-            assert.equal(rateToScore(74), 'Оценка "C"');
+        it('input NaN: "NaN" ', function() {
+            assert.equal(summNumber(NaN), 'NaN');
         });
-        it('input: 75 ', function(){
-            assert.equal(rateToScore(75), 'Оценка "B"');
+        it('input undefined: undefined ', function() {
+            assert.equal(summNumber(undefined), undefined);
         });
-        it('input: 89 ', function(){
-            assert.equal(rateToScore(89), 'Оценка "B"');
+        it('input null: undefined ', function() {
+            assert.equal(summNumber(null), undefined);
         });
-        it('input: 90 ', function(){
-            assert.equal(rateToScore(90), 'Оценка "A"');
+    });
+    describe('reversNumbTest', function(){
+        it('input: 3645 ', function(){
+            assert.equal(reversNumb(3645), 5463);
         });
-        it('input: 100 ', function(){
-            assert.equal(rateToScore(100), 'Оценка "A"');
+        it('input: 1972 ', function(){
+            assert.equal(reversNumb(1972), 2791);
         });
-        it('input: -10 ', function(){
-            assert.equal(rateToScore(-10), undefined);
+        it('input NaN: "NaN" ', function() {
+            assert.equal(reversNumb(NaN), 'NaN');
         });
-        it('input: undefined ', function(){
-            assert.equal(rateToScore(undefined), undefined);
+        it('input undefined: undefined ', function() {
+            assert.equal(reversNumb(undefined), undefined);
         });
-        it('input: null ', function(){
-            assert.equal(rateToScore(null), undefined);
+        it('input null: undefined ', function() {
+            assert.equal(reversNumb(null), undefined);
         });
-        it('input: NaN ', function(){
-            assert.equal(rateToScore(NaN), undefined);
-        });
-    });*/
+    });
 </script>
 <!-- запустить тесты! -->
 <script>
