@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing 'arrays' block</title>
+    <script src="task1.js"></script>
+    <script src="task2.js"></script>
+    <script src="task3.js"></script>
+    <script src="task4.js"></script>
+    <script src="task5.js"></script>
+    <script src="task6.js"></script>
+    <script src="task7.js"></script>
+    <script src="task8.js"></script>
+    <script src="task9.js"></script>
+    <!-- подключаем стили Mocha, для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <!-- подключаем библиотеку Mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <!-- настраиваем Mocha: предстоит BDD-тестирование -->
+    <script>
+        mocha.setup('bdd');
+    </script>
+
+    <!-- подключаем chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <!-- в chai есть много всего, выносим assert в глобальную область -->
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+<body>
+<!-- в элементе с id="mocha" будут результаты тестов -->
+<div id="mocha"></div>
+<script>
+    describe('minElemTest', function(){
+        it('input: [5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6] ', function(){
+            assert.equal(minElem([5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6]), 2);
+        });
+        it('input: 10 ', function(){
+            assert.equal(minElem(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(minElem(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(minElem(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(minElem(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(minElem("string"), undefined);
+        });
+    });
+    describe('maxElemTest', function(){
+        it('input: [1, 4, 5, 6, 8, 4, 6, 2, 7, 5, 7, 9] ', function(){
+            assert.equal(maxElem([1, 4, 5, 6, 8, 4, 6, 2, 7, 5, 7, 9]), 9);
+        });
+        it('input: 10 ', function(){
+            assert.equal(maxElem(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(maxElem(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(maxElem(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(maxElem(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(maxElem("string"), undefined);
+        });
+    });
+    describe('findIndexMinElemTest', function(){
+        it('input: [3, 5, 7, 4, 6, 8, 3, 5, 2, 5, 4] ', function(){
+            assert.equal(findIndexMinElem([3, 5, 7, 4, 6, 8, 3, 5, 2, 5, 4]), 8);
+        });
+        it('input: 10 ', function(){
+            assert.equal(findIndexMinElem(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(findIndexMinElem(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(findIndexMinElem(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(findIndexMinElem(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(findIndexMinElem("string"), undefined);
+        });
+    });
+    describe('findIndexMaxElemTest', function(){
+        it('input: [3, 5, 7, 4, 6, 3, 3, 5, 8, 5, 4] ', function(){
+            assert.equal(findIndexMaxElem([3, 5, 7, 4, 6, 3, 3, 5, 8, 5, 4]), 8);
+        });
+        it('input: 10 ', function(){
+            assert.equal(findIndexMaxElem(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(findIndexMaxElem(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(findIndexMaxElem(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(findIndexMaxElem(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(findIndexMaxElem("string"), undefined);
+        });
+    });
+    describe('summOddDigitsTest', function(){
+        it('input: [1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2] ', function(){
+            assert.equal(summOddDigits([1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2]), 42);
+        });
+        it('input: 10 ', function(){
+            assert.equal(summOddDigits(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(summOddDigits(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(summOddDigits(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(summOddDigits(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(summOddDigits("string"), undefined);
+        });
+    });
+    describe('reverseArrayTest', function(){
+        it('input: [1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2] ', function(){
+            assert.deepEqual(reverseArray([1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2]), [2, 7, 3, 5, 9, 5, 4, 7, 8, 5, 4, 1]);
+        });
+        it('input: 10 ', function(){
+            assert.equal(reverseArray(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(reverseArray(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(reverseArray(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(reverseArray(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(reverseArray("string"), undefined);
+        });
+    });
+    describe('countOddElemTest', function(){
+        it('input: [1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2] ', function(){
+            assert.equal(countOddElem([1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2]), 8);
+        });
+        it('input: 10 ', function(){
+            assert.equal(countOddElem(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(countOddElem(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(countOddElem(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(countOddElem(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(countOddElem("string"), undefined);
+        });
+    });
+    describe('swapCouplePartTest', function(){
+        it('input: [1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2] ', function(){
+            assert.deepEqual(swapCouplePart([1, 4, 5, 8, 7, 4, 5, 9, 5, 3, 7, 2]), [5, 9, 5, 3, 7, 2, 1, 4, 5, 8, 7, 4]);
+        });
+        it('input: 10 ', function(){
+            assert.equal(swapCouplePart(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(swapCouplePart(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(swapCouplePart(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(swapCouplePart(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(swapCouplePart("string"), undefined);
+        });
+    });
+    describe('bubbleSortTest', function(){
+        it('input: [5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6] ', function(){
+            assert.deepEqual(bubbleSort([5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6]), [2, 3, 3, 4, 5, 5, 6, 6, 7, 7, 9, 9]);
+        });
+        it('input: 10 ', function(){
+            assert.equal(bubbleSort(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(bubbleSort(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(bubbleSort(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(bubbleSort(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(bubbleSort("string"), undefined);
+        });
+    });
+    describe('insertSortTest', function(){
+        it('input: [5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6] ', function(){
+            assert.deepEqual(insertSort([5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6]), [2, 3, 3, 4, 5, 5, 6, 6, 7, 7, 9, 9]);
+        });
+        it('input: 10 ', function(){
+            assert.equal(insertSort(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(insertSort(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(insertSort(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(insertSort(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(insertSort("string"), undefined);
+        });
+    });
+    describe('selectSortTest', function(){
+        it('input: [5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6] ', function(){
+            assert.deepEqual(selectSort([5, 9, 7, 3, 4, 7, 2, 9, 5, 6, 3, 6]), [2, 3, 3, 4, 5, 5, 6, 6, 7, 7, 9, 9]);
+        });
+        it('input: 10 ', function(){
+            assert.equal(selectSort(10), undefined);
+        });
+        it('input: null ', function(){
+            assert.equal(selectSort(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(selectSort(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(selectSort(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.equal(selectSort("string"), undefined);
+        });
+    });
+</script>
+<!-- запустить тесты! -->
+<script>
+    mocha.run();
+</script>
+</body>
+</html>
