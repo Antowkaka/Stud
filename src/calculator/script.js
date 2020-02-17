@@ -38,9 +38,8 @@ function multiplyDOM(){
         document.querySelector('.input-in').value = result;
         document.querySelector('.input-in-helper').value = result;
         args = [result];
-    }
-    flag = 'mult';
-    console.log(flag);
+        flag = 'equal';
+    }else flag = 'mult';
 }
 function divisionDOM(){
     whatNumb();
@@ -51,10 +50,8 @@ function divisionDOM(){
         document.querySelector('.input-in').value = result;
         document.querySelector('.input-in-helper').value = result;
         args = [result];
-    }
-    flag = 'division';
-    console.log(flag);
-
+        flag = 'equal';
+    }else flag = 'division';
 }
 function summDOM(){
     whatNumb();
@@ -79,9 +76,8 @@ function diffDOM(){
         document.querySelector('.input-in').value = result;
         document.querySelector('.input-in-helper').value = result;
         args = [result];
-    }
-    flag = 'diff';
-    console.log(flag);
+        flag = 'equal';
+    }else flag = 'diff';
 }
 function equalDOM(){
    switch (flag) {
