@@ -29,61 +29,82 @@ function fullClearVal(){
     document.querySelector('.input-in-helper').value = '';
     args = [];
 }
-function multiply(){
+function multiplyDOM(){
     whatNumb();
     clearVal();
     document.querySelector('.input-in-helper').value += '*';
     if(args.length == 2){
-        result = args[0] * args[1];
+        result = multiply(args[0], args[1]);
         document.querySelector('.input-in').value = result;
         document.querySelector('.input-in-helper').value = result;
         args = [result];
     }
     flag = 'mult';
+    console.log(flag);
 }
-function division(){
+function divisionDOM(){
     whatNumb();
     clearVal();
     document.querySelector('.input-in-helper').value += '/';
     if(args.length == 2){
-        result = args[0] / args[1];
+        result = division(args[0], args[1]);
         document.querySelector('.input-in').value = result;
         document.querySelector('.input-in-helper').value = result;
         args = [result];
     }
     flag = 'division';
+    console.log(flag);
+
 }
-function summ(){
+function summDOM(){
     whatNumb();
     clearVal();
     document.querySelector('.input-in-helper').value += '+';
     if(args.length == 2){
-        result = args[0] + args[1];
+        result = summ(args[0], args[1]);
         document.querySelector('.input-in').value = result;
         document.querySelector('.input-in-helper').value = result;
         args = [result];
         flag = 'equal';
     }else flag = 'summ';// change all func !
+    console.log(flag);
+
 }
-function diff(){
+function diffDOM(){
     whatNumb();
     clearVal();
     document.querySelector('.input-in-helper').value += '-';
     if(args.length == 2){
-        result = args[0] - args[1];
+        result = diff(args[0], args[1]);
         document.querySelector('.input-in').value = result;
         document.querySelector('.input-in-helper').value = result;
         args = [result];
     }
     flag = 'diff';
+    console.log(flag);
 }
-function equal(){
+function equalDOM(){
    switch (flag) {
-       case 'mult': multiply(); break;
-       case 'division': division(); break;
-       case 'summ': summ(); break;
-       case 'diff': diff(); break;
+       case 'mult': multiplyDOM(); break;
+       case 'division': divisionDOM(); break;
+       case 'summ': summDOM(); break;
+       case 'diff': diffDOM(); break;
        default:; break;
    }
+}
+
+
+//math logic
+function multiply(a, b) {
+    return a*b;
+}
+function division(a, b) {
+    return a/b;
+}
+function summ(a, b) {
+    return a+b;
+}
+function diff(a, b) {
+    return a-b;
 }
 //console.log(typeof document.querySelector('.input-in').value);
