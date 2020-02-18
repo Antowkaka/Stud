@@ -26,17 +26,17 @@ body{
     cursor: pointer;
     font-weight: bold;
 }
-input{
+.input-in, .input-in-helper{
     color: white;
     background-color: #2B2D2F;
     width: 400px;
-    height: 80px;
     border: none;
     font-size: 30px;
     outline: none;
     text-align: right;
 }
 .input{
+    height: 80px;
     grid-column: 1/-1;
     padding: 0;
 }
@@ -48,12 +48,19 @@ input{
     font-size: 15px;
 }
 .zero{
+    background-color: #5F6062;
     grid-column: 3/1;
 }
 .num{
     background-color: #5F6062;
 }
+.point{
+    background-color: #5F6062;
+}
 .operator{
+    background-color: #FD9E2B;
+}
+.equal{
     background-color: #FD9E2B;
 }
 .other{

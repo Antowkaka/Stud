@@ -2,8 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Calculator 1.0</title>
+        <title>Calculator 2.0</title>
         <link rel="stylesheet" href="style.css">
+
     </head>
     <body>
         <div class="container">
@@ -13,26 +14,26 @@
                     <input class="input-in" type="text" name="textview" value=""  readonly>
                 </form>
             </div>
-            <div class="item other" onclick="fullClearVal()">AC</div>
-            <div class="item other" onclick="clearVal()">C</div>
-            <div class="item other">%</div>
-            <div class="item operator" onclick="divisionDOM()">&divide;</div>
-            <div class="item num" onclick="addNum(7)">7</div>
-            <div class="item num" onclick="addNum(8)">8</div>
-            <div class="item num" onclick="addNum(9)">9</div>
-            <div class="item operator" onclick="multiplyDOM()">&times;</div>
-            <div class="item num" onclick="addNum(4)">4</div>
-            <div class="item num" onclick="addNum(5)">5</div>
-            <div class="item num" onclick="addNum(6)">6</div>
-            <div class="item operator" onclick="diffDOM()">-</div>
-            <div class="item num" onclick="addNum(1)">1</div>
-            <div class="item num" onclick="addNum(2)">2</div>
-            <div class="item num" onclick="addNum(3)">3</div>
-            <div class="item operator" onclick="summDOM()">+</div>
-            <div class="item num zero " onclick="addNum(0)">0</div>
-            <div class="item num" onclick="addPoint()">.</div>
-            <div class="item operator" onclick="equalDOM()">=</div>
+            <input type="button" class="item other clearAll" value="AC">
+            <input type="button" class="item other clear" value="&#8592;">
+            <input type="button" class="item other" value="%">
+            <input type="button" class="item operator" value="/">
+            <input type="button" class="item num" value="7">
+            <input type="button" class="item num" value="8">
+            <input type="button" class="item num" value="9">
+            <input type="button" class="item operator" value="*">
+            <input type="button" class="item num" value="4">
+            <input type="button" class="item num" value="5">
+            <input type="button" class="item num" value="6">
+            <input type="button" class="item operator" value="-">
+            <input type="button" class="item num" value="1">
+            <input type="button" class="item num" value="2">
+            <input type="button" class="item num" value="3">
+            <input type="button" class="item operator" value="+">
+            <input type="button" class="item num zero" value="0">
+            <input type="button" class="item point" value=".">
+            <input type="button" class="item equal" value="=">
         </div>
     </body>
-    <script src="script.js"></script>
+    <script src="correctscript.js"></script>
 </html>
