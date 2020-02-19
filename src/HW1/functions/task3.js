@@ -35,12 +35,20 @@ let numFromStrHundred =  {'one': 1,
                         'seven': 7,
                         'eight': 8,
                         'nine': 9};*/
+const arrStrNumbers = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+const arrStrNumbersEndTeen = ['eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+const arrStrNumbersEndTy = ['ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
 function strInNumb(str) {
+    if(typeof str != 'string') return 'Error';
     let strLow = str.toLowerCase();
     let arr = strLow.split(' ');
     let helpNumb = 0;
     let mainNumb = 0;
     if(arr.length == 4){
+        if(!arrStrNumbers.includes(arr[0])) return 'Error';
+        if(arr[1] != 'hundred') return 'Error';
+        if(!arrStrNumbersEndTy.includes(arr[2])) return 'Error';
+        if(!arrStrNumbers.includes(arr[3])) return 'Error';
         switch (arr[0]) {
             case 'one': mainNumb+= 100; break;
             case 'two': mainNumb+= 200; break;
@@ -76,7 +84,43 @@ function strInNumb(str) {
             case 'nine': mainNumb+= 9; break;
             default: break;
         }
-    }else if(arr.length == 2){
+    }else if(arr.length == 3) {
+        if(!arrStrNumbers.includes(arr[0])) return 'Error';
+        if(arr[1] != 'hundred') return 'Error';
+        if(!arrStrNumbers.includes(arr[2])) return 'Error';
+        switch (arr[0]) {
+            case 'one': mainNumb+= 100; break;
+            case 'two': mainNumb+= 200; break;
+            case 'three': mainNumb+= 300; break;
+            case 'four': mainNumb+= 400; break;
+            case 'five': mainNumb+= 500; break;
+            case 'six': mainNumb+= 600; break;
+            case 'seven': mainNumb+= 700; break;
+            case 'eight': mainNumb+= 800; break;
+            case 'nine': mainNumb+= 900; break;
+            default: break;
+        }
+        switch (arr[2]) {
+            case 'one': mainNumb+= 1; break;
+            case 'two': mainNumb+= 2; break;
+            case 'three': mainNumb+= 3; break;
+            case 'four': mainNumb+= 4; break;
+            case 'five': mainNumb+= 5; break;
+            case 'six': mainNumb+= 6; break;
+            case 'seven': mainNumb+= 7; break;
+            case 'eight': mainNumb+= 8; break;
+            case 'nine': mainNumb+= 9; break;
+            default: break;
+        }
+    }else
+     if(arr.length == 2){
+        if(arrStrNumbers.includes(arr[0])){
+            if(arr[1] != 'hundred') return 'Error';
+        }else{
+            if(arrStrNumbersEndTy.includes(arr[0])){
+                if(!arrStrNumbers.includes(arr[1])) return 'Error';
+            }else return 'Error';
+        }
         if(arr[1] == 'hundred'){
             switch (arr[0]) {
                 case 'one': mainNumb+= 100; break;
@@ -116,6 +160,9 @@ function strInNumb(str) {
             }
         }
     }else if(arr.length == 1){
+        if(!arrStrNumbers.includes(arr[0])){
+            if(!arrStrNumbersEndTeen.includes(arr[0])) return 'Error';
+        }
         switch (arr[0]) {
             case 'one': mainNumb+= 1; break;
             case 'two': mainNumb+= 2; break;
@@ -141,4 +188,4 @@ function strInNumb(str) {
     }
     return mainNumb;
 }
-console.log(strInNumb('seventeen'));
+

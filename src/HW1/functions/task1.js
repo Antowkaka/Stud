@@ -1,5 +1,8 @@
 "use strict";
 function dayOfWeek(numbDay){
+    if(typeof numbDay != 'number') return undefined;
+    if(typeof numbDay == 'string') return undefined;
+    if(isNaN(numbDay) == true) return 'NaN';
     let week = {1: 'Monday',
         2: 'Tuesday',
         3: 'Wednesday',
@@ -13,4 +16,3 @@ function dayOfWeek(numbDay){
         };
     };
 };
-console.log(dayOfWeek(4));

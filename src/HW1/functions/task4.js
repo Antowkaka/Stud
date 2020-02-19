@@ -1,11 +1,12 @@
 "use strict";
 function findDistanse(fpointCoordX, fpointCoordY, spointCoordX, spointCoordY) {
     for (let i = 0; i < arguments.length; i++) {
-        let boolVal = typeof(arguments[i]) != 'number' || isNaN(arguments[i]) == true || typeof(arguments[i]) == 'string' || typeof(arguments[i]) == 'number';
+        let boolVal = typeof(arguments[i]) != 'number' || isNaN(arguments[i]) == true || typeof(arguments[i]) == 'string';
         if(boolVal){
             return undefined;
         }
     }
+    if(arguments.length < 4) return 'a few args';
     let fpcX = fpointCoordX;
     let fpcY = fpointCoordY;
     let spcX = spointCoordX;
@@ -36,4 +37,3 @@ function findDistanse(fpointCoordX, fpointCoordY, spointCoordX, spointCoordY) {
     }
     return distance;
 }
-console.log('Distance ', findDistanse(-6, 9, 4, 3));

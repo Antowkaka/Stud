@@ -39,8 +39,6 @@ function binarySearcMethod(value){
         }else{
             high = mid + 1;
         };
-        //console.log('Loop number:', i, 'mid = ', mid);
-        i++;
     }
 }
 

@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Testing 'functions' block</title>
+    <script src="task1.js"></script>
+    <script src="task2.js"></script>
+    <script src="task3.js"></script>
+    <script src="task4.js"></script>
+    <!-- подключаем стили Mocha, для отображения результатов -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.css">
+    <!-- подключаем библиотеку Mocha -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/2.1.0/mocha.js"></script>
+    <!-- настраиваем Mocha: предстоит BDD-тестирование -->
+    <script>
+        mocha.setup('bdd');
+    </script>
+
+    <!-- подключаем chai -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/2.0.0/chai.js"></script>
+    <!-- в chai есть много всего, выносим assert в глобальную область -->
+    <script>
+        var assert = chai.assert;
+    </script>
+</head>
+<body>
+<!-- в элементе с id="mocha" будут результаты тестов -->
+<div id="mocha"></div>
+<script>
+    describe('dayOfWeekTest', function(){
+        it('input: 1 ', function(){
+            assert.equal(dayOfWeek(1), 'Monday');
+        });
+        it('input: 3 ', function(){
+            assert.equal(dayOfWeek(3), 'Wednesday');
+        });
+        it('input: 7', function(){
+            assert.equal(dayOfWeek(7), 'Sunday');
+        });
+        it('input: null', function(){
+            assert.equal(dayOfWeek(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.equal(dayOfWeek(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.equal(dayOfWeek(NaN), 'NaN');
+        });
+        it('input: "string" ', function(){
+            assert.equal(dayOfWeek("string"), undefined);
+        });
+    });
+    describe('howMuchDigitTest', function(){
+        it('input: 93821 ', function(){
+            assert.deepEqual(howMuchDigit(93821), [ 1, 2, 8, 93, 0, 0 ]);
+        });
+        it('input: 999999999999 ', function(){
+            assert.deepEqual(howMuchDigit(999999999999), [ 9, 9, 9, 999, 999, 999 ]);
+        });
+        it('input: 0', function(){
+            assert.deepEqual(howMuchDigit(0), undefined);
+        });
+        it('input: 1000000000000', function(){
+            assert.deepEqual(howMuchDigit(1000000000000), undefined);
+        });
+        it('input: null', function(){
+            assert.deepEqual(howMuchDigit(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.deepEqual(howMuchDigit(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.deepEqual(howMuchDigit(NaN), 'NaN');
+        });
+        it('input: "string" ', function(){
+            assert.deepEqual(howMuchDigit("string"), undefined);
+        });
+    });
+    describe('numbInStringTest', function(){
+        it('input: 8 ', function(){
+            assert.deepEqual(numbInString(8), 'eight');
+        });
+        it('input: 10 ', function(){
+            assert.deepEqual(numbInString(10), 'ten');
+        });
+        it('input: 12 ', function(){
+            assert.deepEqual(numbInString(12), 'twelve');
+        });
+        it('input: 99', function(){
+            assert.deepEqual(numbInString(99), 'ninety nine');
+        });
+        it('input: 999', function(){
+            assert.deepEqual(numbInString(999), 'Nine hundred ninety nine');
+        });
+        it('input: null', function(){
+            assert.deepEqual(numbInString(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.deepEqual(numbInString(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.deepEqual(numbInString(NaN), 'NaN');
+        });
+        it('input: "string" ', function(){
+            assert.deepEqual(numbInString("string"), undefined);
+        });
+    });
+    describe('strInNumbTest', function(){
+        it('input: "Two hundred forty five" ', function(){
+            assert.deepEqual(strInNumb("Two hundred forty five"), 245);
+        });
+        it('input: "Five hundred six" ', function(){
+            assert.deepEqual(strInNumb("Five hundred six"), 506);
+        });
+        it('input: "Forty five" ', function(){
+            assert.deepEqual(strInNumb("Forty five"), 45);
+        });
+        it('input: "Nine"', function(){
+            assert.deepEqual(strInNumb("Nine"), 9);
+        });
+        it('input: "Thirteen"', function(){
+            assert.deepEqual(strInNumb("Thirteen"), 13);
+        });
+        it('input: "Twenty hundred five sixty" ', function(){
+            assert.deepEqual(strInNumb("Twenty hundred five sixty"), 'Error');
+        });
+        it('input: "Fiftyhundred six" ', function(){
+            assert.deepEqual(strInNumb("Fiftyhundred six"), 'Error');
+        });
+        it('input: "Forty handred" ', function(){
+            assert.deepEqual(strInNumb("Forty handred"), 'Error');
+        });
+        it('input: "Ninety"', function(){
+            assert.deepEqual(strInNumb("Ninety"), 'Error');
+        });
+        it('input: "Thirteen hundred"', function(){
+            assert.deepEqual(strInNumb("Thirteen hundred"), 'Error');
+        });
+        it('input: 24', function(){
+            assert.deepEqual(strInNumb(24), 'Error');
+        });
+        it('input: null', function(){
+            assert.deepEqual(strInNumb(null), 'Error');
+        });
+        it('input: undefined ', function(){
+            assert.deepEqual(strInNumb(undefined), 'Error');
+        });
+        it('input: NaN ', function(){
+            assert.deepEqual(strInNumb(NaN), 'Error');
+        });
+        it('input: "string" ', function(){
+            assert.deepEqual(strInNumb("string"), 'Error');
+        });
+    });
+    describe('findDistanseTest', function(){
+        it('input: -6, 9, 4, 3 ', function(){
+            assert.deepEqual(findDistanse(-6, 9, 4, 3), 11.661903789690601);
+        });
+        it('input: 6, 8, -4, 7 ', function(){
+            assert.deepEqual(findDistanse(6, 8, -4, 7), 10.04987562112089);
+        });
+        it('input: 12 ', function(){
+            assert.deepEqual(findDistanse(12), 'a few args');
+        });
+        it('input: null', function(){
+            assert.deepEqual(findDistanse(null), undefined);
+        });
+        it('input: undefined ', function(){
+            assert.deepEqual(findDistanse(undefined), undefined);
+        });
+        it('input: NaN ', function(){
+            assert.deepEqual(findDistanse(NaN), undefined);
+        });
+        it('input: "string" ', function(){
+            assert.deepEqual(findDistanse("string"), undefined);
+        });
+    });
+</script>
+<!-- запустить тесты! -->
+<script>
+    mocha.run();
+</script>
+</body>
+</html>

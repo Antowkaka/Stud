@@ -1,5 +1,9 @@
 "use strict";
 function howMuchDigit(numb){
+    if(numb <= 0 || numb > 999999999999) return undefined;
+    if(typeof numb != 'number') return undefined;
+    if(typeof numb == 'string') return undefined;
+    if(isNaN(numb) == true) return 'NaN';
     let one = numb % 10;
     let ten = parseInt((numb % 100) / 10);
     let hundred = parseInt((numb % 1000) / 100);
@@ -9,6 +13,10 @@ function howMuchDigit(numb){
     return [one, ten, hundred, thousand, million, billion];
 }
 function numbInString(num) {
+    if(num <= 0 || num > 999) return undefined;
+    if(typeof num != 'number') return undefined;
+    if(typeof num == 'string') return undefined;
+    if(isNaN(num) == true) return 'NaN';
     let arr = [];
     let digit = howMuchDigit(num);
     switch (digit[2]) {
@@ -38,7 +46,7 @@ function numbInString(num) {
         }
     }else if(digit[0] == 0){
         switch (digit[1]) {
-            case 1:  arr.push('one'); break;
+            case 1:  arr.push('ten'); break;
             case 2:  arr.push('twenty'); break;
             case 3:  arr.push('thirty'); break;
             case 4:  arr.push('forty'); break;
@@ -51,7 +59,7 @@ function numbInString(num) {
         }
     }else{
         switch (digit[1]) {
-            case 1:  arr.push('one'); break;
+            case 1:  arr.push('ten'); break;
             case 2:  arr.push('twenty'); break;
             case 3:  arr.push('thirty'); break;
             case 4:  arr.push('forty'); break;
@@ -77,7 +85,7 @@ function numbInString(num) {
     }
     return arr.join(' ');
 }
-console.log(numbInString(20));
+
 
 
 
