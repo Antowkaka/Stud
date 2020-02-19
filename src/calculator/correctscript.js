@@ -73,7 +73,7 @@ for(let j of operators){
     j.addEventListener('click', function () {
         //check clone operator
         for(let count of operators){
-            if(inpHelp.value[inpHelp.value.length-1] == count.value) return;
+            if(inpHelp.value[inpHelp.value.length-1] == count.value || inpHelp.value == '') return;
         }
         temp1 = j.value;
         if(val2 == '') temp2 = temp1;
@@ -110,9 +110,16 @@ clearAll.addEventListener('click', function () {
     inpHelp.value = '';
 });
 clear.addEventListener('click', function () {
-   trig = true;
-   inp.value = inp.value.substring(0, inp.value.length-1);
-   inpHelp.value = inpHelp.value.substring(0, inpHelp.value.length-1);
+    if(trig == true){
+        val2 = inp.value.substring(0, inp.value.length-1);;
+        inp.value = val2;
+    }else{
+        val1 = inp.value.substring(0, inp.value.length-1);;
+        inp.value = val1;
+    }
+    inpHelp.value = inpHelp.value.substring(0, inpHelp.value.length-1);
+   //inp.value = inp.value.substring(0, inp.value.length-1);
+   //inpHelp.value = inpHelp.value.substring(0, inpHelp.value.length-1);
 });
 addPoint.addEventListener('click', function () {
     if(inp.value.indexOf('.') == -1 && inpHelp.value != '' && inp.value != ''){
