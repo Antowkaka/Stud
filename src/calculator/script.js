@@ -1,95 +1,17 @@
-'use strict';
-let value = document.querySelector('.input-in').value;
-let flag;
-let args = [];
-let help_args = [];
-let result = 0;
-function addNum(num){
-    if(document.querySelector('.input-in').value.length <= 12){
-        document.querySelector('.input-in').value += num;
-        document.querySelector('.input-in-helper').value += num;
-    }
-}
-function whatNumb() {
-    if(document.querySelector('.input-in').value.indexOf('.')){
-        args.push(parseFloat(document.querySelector('.input-in').value));
-    }else {
-        args.push(parseInt(document.querySelector('.input-in').value));
-    }
-    console.log(typeof args[0]);
-}
-function addPoint(){
-    if(document.querySelector('.input-in').value.indexOf('.') == -1) document.querySelector('.input-in').value += '.';
-}
-function clearVal(){
-    document.querySelector('.input-in').value = '';
-}
-function fullClearVal(){
-    document.querySelector('.input-in').value = '';
-    document.querySelector('.input-in-helper').value = '';
-    args = [];
-}
-function multiplyDOM(){
-    whatNumb();
-    clearVal();
-    document.querySelector('.input-in-helper').value += '*';
-    if(args.length == 2){
-        result = multiply(args[0], args[1]);
-        document.querySelector('.input-in').value = result;
-        document.querySelector('.input-in-helper').value = result;
-        args = [result];
-        flag = 'equal';
-    }else flag = 'mult';
-}
-function divisionDOM(){
-    whatNumb();
-    clearVal();
-    document.querySelector('.input-in-helper').value += '/';
-    if(args.length == 2){
-        result = division(args[0], args[1]);
-        document.querySelector('.input-in').value = result;
-        document.querySelector('.input-in-helper').value = result;
-        args = [result];
-        flag = 'equal';
-    }else flag = 'division';
-}
-function summDOM(){
-    whatNumb();
-    clearVal();
-    document.querySelector('.input-in-helper').value += '+';
-    if(args.length == 2){
-        result = summ(args[0], args[1]);
-        document.querySelector('.input-in').value = result;
-        document.querySelector('.input-in-helper').value = result;
-        args = [result];
-        flag = 'equal';
-    }else flag = 'summ';// change all func !
-    console.log(flag);
-
-}
-function diffDOM(){
-    whatNumb();
-    clearVal();
-    document.querySelector('.input-in-helper').value += '-';
-    if(args.length == 2){
-        result = diff(args[0], args[1]);
-        document.querySelector('.input-in').value = result;
-        document.querySelector('.input-in-helper').value = result;
-        args = [result];
-        flag = 'equal';
-    }else flag = 'diff';
-}
-function equalDOM(){
-   switch (flag) {
-       case 'mult': multiplyDOM(); break;
-       case 'division': divisionDOM(); break;
-       case 'summ': summDOM(); break;
-       case 'diff': diffDOM(); break;
-       default:; break;
-   }
-}
-
-
+let val1 = '';
+let val2 = '';
+let trig = false;
+let temp1;
+let temp2;
+let result;
+let num = document.querySelectorAll('.num');
+let operators = document.querySelectorAll('.operator');
+const inp = document.querySelector('.input-in');
+const inpHelp = document.querySelector('.input-in-helper');
+const clearAll = document.querySelector('.clearAll');
+const clear = document.querySelector('.clear');
+const equal = document.querySelector('.equal');
+const addPoint = document.querySelector('.point');
 //math logic
 function multiply(a, b) {
     return a*b;
@@ -103,4 +25,126 @@ function summ(a, b) {
 function diff(a, b) {
     return a-b;
 }
-//console.log(typeof document.querySelector('.input-in').value);
+
+//handling funcs
+function whatNumb(num) {
+    num = num.toString();
+    if(num.indexOf('.')){
+        return parseFloat(num);
+    }else {
+        return parseInt(num);
+    }
+}
+function howOperation(val) {
+    inpHelp.value+= val;
+}
+function clearInput() {
+    inp.value = '';
+}
+function equalFunc(sign, v1, v2) {
+    v1 = whatNumb(v1);
+    v2 = whatNumb(v2);
+    console.log('Sign - ', typeof sign, 'v1 ', typeof v1, 'v2', typeof v2);
+    switch (sign) {
+        case '+': return summ(v1, v2);
+        case '-': return diff(v1, v2);
+        case '*': return multiply(v1, v2);
+        case '/': return division(v1, v2);
+        default: return '';
+    }
+}
+
+//Listeners
+for (let i of num){
+    i.addEventListener('click', function () {
+        if(!trig){
+            val1 += i.value;
+            inp.value = val1;
+            inpHelp.value+= i.value;
+        }else{
+            val2 += i.value;
+            inp.value = val2;
+            inpHelp.value+= i.value;
+        }
+        console.log('Val1 ', val1, 'Val2 ', val2);
+    });
+}
+for(let j of operators){
+    j.addEventListener('click', function () {
+        //check clone operator
+        for(let count of operators){
+            if(inpHelp.value[inpHelp.value.length-1] == count.value || inpHelp.value == '') return;
+        }
+        temp1 = j.value;
+        if(val2 == '') temp2 = temp1;
+        howOperation(j.value);
+        clearInput();
+        trig = true;
+        if(val2 != ''){
+            result = equalFunc(temp2, val1, val2);
+            inpHelp.value = result + temp1;
+            inp.value = result;
+            val1 = result;
+            val2 = '';
+            temp2 = temp1;
+            //console.log(j.value);
+        }
+    });
+}
+equal.addEventListener('click', function () {
+    result = equalFunc(temp2, val1, val2);
+    if(isNaN(result)){
+        return;
+    }
+    inp.value = result;
+    inpHelp.value = result;
+    val1 = equalFunc(temp2, val1, val2);
+    val2 = '';
+    console.log(result);
+})
+clearAll.addEventListener('click', function () {
+    trig = false;
+    val1 = '';
+    val2 = '';
+    inp.value = '';
+    inpHelp.value = '';
+});
+clear.addEventListener('click', function () {
+    if(trig == true){
+        val2 = inp.value.substring(0, inp.value.length-1);;
+        inp.value = val2;
+    }else{
+        val1 = inp.value.substring(0, inp.value.length-1);;
+        inp.value = val1;
+    }
+    inpHelp.value = inpHelp.value.substring(0, inpHelp.value.length-1);
+   //inp.value = inp.value.substring(0, inp.value.length-1);
+   //inpHelp.value = inpHelp.value.substring(0, inpHelp.value.length-1);
+});
+addPoint.addEventListener('click', function () {
+    if(inp.value.indexOf('.') == -1 && inpHelp.value != '' && inp.value != ''){
+        if(trig == false){
+            val1 += '.';
+            inp.value = val1;
+            inpHelp.value = inp.value;
+        }
+        else{
+            val2 += '.';
+            inp.value = val2;
+            inpHelp.value+= '.';
+        }
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
