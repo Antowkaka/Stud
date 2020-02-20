@@ -28,6 +28,9 @@
         it('input: 5 -3', function(){
             assert.equal(multiply(5, -3), -15);
         });
+        it('input: 5.5 3.7', function(){
+            assert.equal(multiply(5.5, 3.7), 20.35);
+        });
         it('input: 5 ', function(){
             assert.equal(multiply(5), undefined);
         });
@@ -48,8 +51,14 @@
         it('input: 10 2', function(){
             assert.equal(division(10, 2), 5);
         });
+        it('input: 7.1 4.6', function(){
+            assert.equal(division(7.1, 4.6), 1.5434782608695652);
+        });
         it('input: 5 ', function(){
             assert.equal(division(5), undefined);
+        });
+        it('Zero division', function(){
+            assert.equal(division(45, 0), 'Zero division');
         });
         it('input: "string" ', function(){
             assert.equal(division("string"), undefined);
@@ -67,6 +76,9 @@
     describe('summTest', function(){
         it('input: 10 45', function(){
             assert.equal(summ(12, 45), 57);
+        });
+        it('input: 12.6 9.5', function(){
+            assert.equal(summ(12.6, 9.5), 22.1);
         });
         it('input: 5 ', function(){
             assert.equal(summ(5), undefined);
@@ -87,6 +99,9 @@
     describe('diffTest', function(){
         it('input: 54 32', function(){
             assert.equal(diff(54, 32), 22);
+        });
+        it('input: 1.1 2.2', function(){
+            assert.deepEqual(diff(1.1, 2.2), -1.1);
         });
         it('input: 5 ', function(){
             assert.equal(diff(5), undefined);

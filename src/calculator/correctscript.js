@@ -25,6 +25,7 @@ function division(a, b) {
     if(boolVal){
         return undefined;
     }
+    if(b == 0) return 'Zero division';
     return a/b;
 }
 function summ(a, b) {
@@ -111,6 +112,11 @@ for(let j of operators){
         clearInput();
         if(val2 != '' && trig == true){
             result = equalFunc(temp2, val1, val2);
+            if(result == 'Zero division'){
+                clearAllFunc();
+                inp.value = result;
+                return;
+            }
             inpHelp.value = result + temp1;
             inp.value = result;
             val1 = result;
@@ -121,19 +127,22 @@ for(let j of operators){
     });
 }
 equal.addEventListener('click', function () {
+    if(equalFunc(temp1, val1, val2) == 'Zero division'){
+        inpHelp.value = '';
+        inp.value = equalFunc(temp1, val1, val2);
+        return;
+    }
     result = equalFunc(temp1, val1, val2);
     if(isNaN(result)){
         return;
     }
     clearAllFunc();
     inp.value = result;
-    /*inpHelp.value = result;
-    val1 = equalFunc(temp1, val1, val2);
-    val2 = '';*/
     console.log(result);
 })
 clearAll.addEventListener('click', clearAllFunc);
 clear.addEventListener('click', function () {
+    if(result == 'Zero division') return;
     if(trig == true){
         for(let count of operators){
             if(inpHelp.value[inpHelp.value.length-1] == count.value){
