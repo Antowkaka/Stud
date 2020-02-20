@@ -53,11 +53,20 @@ function equalFunc(sign, v1, v2) {
         default: return '';
     }
 }
+function clearAllFunc() {
+    trig = false;
+    val1 = '';
+    val2 = '';
+    inp.value = '';
+    inpHelp.value = '';
+}
+
 
 //Listeners
 for (let i of num){
     i.addEventListener('click', function () {
-        if(!trig){
+        if(inp.value.length == 1 && inp.value.indexOf('0') == 0) return;
+        if(trig == false){
             val1 += i.value;
             inp.value = val1;
             inpHelp.value+= i.value;
@@ -66,7 +75,7 @@ for (let i of num){
             inp.value = val2;
             inpHelp.value+= i.value;
         }
-        console.log('Val1 ', val1, 'Val2 ', val2);
+        console.log('Val1 ', val1, 'Val2 ', val2, 'Inp value ', inp.value.indexOf('0'));
     });
 }
 for(let j of operators){
@@ -76,43 +85,52 @@ for(let j of operators){
             if(inpHelp.value[inpHelp.value.length-1] == count.value || inpHelp.value == '') return;
         }
         temp1 = j.value;
-        if(val2 == '') temp2 = temp1;
+        if(trig == false){
+            temp2 = temp1;
+            trig = true;
+        }
+        console.log('operator work', trig);
+        console.log('operator work temp2', temp2);
         howOperation(j.value);
         clearInput();
-        trig = true;
-        if(val2 != ''){
+        if(val2 != '' && trig == true){
             result = equalFunc(temp2, val1, val2);
             inpHelp.value = result + temp1;
             inp.value = result;
             val1 = result;
             val2 = '';
             temp2 = temp1;
-            //console.log(j.value);
+            console.log('I`m working', temp2);
         }
     });
 }
 equal.addEventListener('click', function () {
-    result = equalFunc(temp2, val1, val2);
+    result = equalFunc(temp1, val1, val2);
     if(isNaN(result)){
         return;
     }
+    clearAllFunc();
     inp.value = result;
-    inpHelp.value = result;
-    val1 = equalFunc(temp2, val1, val2);
-    val2 = '';
+    /*inpHelp.value = result;
+    val1 = equalFunc(temp1, val1, val2);
+    val2 = '';*/
     console.log(result);
 })
-clearAll.addEventListener('click', function () {
-    trig = false;
-    val1 = '';
-    val2 = '';
-    inp.value = '';
-    inpHelp.value = '';
-});
+clearAll.addEventListener('click', clearAllFunc);
 clear.addEventListener('click', function () {
     if(trig == true){
-        val2 = inp.value.substring(0, inp.value.length-1);;
+        for(let count of operators){
+            if(inpHelp.value[inpHelp.value.length-1] == count.value){
+                trig = false;
+                inpHelp.value = inpHelp.value.substring(0, inpHelp.value.length-1);
+                if(inpHelp.value[inpHelp.value.length-2] == undefined) clearAllFunc();
+                return;
+            } 
+        }
+        if(inpHelp.value[inpHelp.value.length-2] == undefined) clearAllFunc();
+        val2 = inp.value.substring(0, inp.value.length-1);
         inp.value = val2;
+        console.log('clear work ', inpHelp.value[inpHelp.value.length-2]);
     }else{
         val1 = inp.value.substring(0, inp.value.length-1);;
         inp.value = val1;
