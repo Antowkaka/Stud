@@ -14,15 +14,31 @@ const equal = document.querySelector('.equal');
 const addPoint = document.querySelector('.point');
 //math logic
 function multiply(a, b) {
+    let boolVal = typeof(a+b) != 'number' || isNaN(a+b) == true || typeof(a+b) == 'string';
+    if(boolVal){
+        return undefined;
+    }
     return a*b;
 }
 function division(a, b) {
+    let boolVal = typeof(a+b) != 'number' || isNaN(a+b) == true || typeof(a+b) == 'string';
+    if(boolVal){
+        return undefined;
+    }
     return a/b;
 }
 function summ(a, b) {
+    let boolVal = typeof(a+b) != 'number' || isNaN(a+b) == true || typeof(a+b) == 'string';
+    if(boolVal){
+        return undefined;
+    }
     return a+b;
 }
 function diff(a, b) {
+    let boolVal = typeof(a+b) != 'number' || isNaN(a+b) == true || typeof(a+b) == 'string';
+    if(boolVal){
+        return undefined;
+    }
     return a-b;
 }
 
