@@ -7,6 +7,9 @@ const infoArr = document.querySelectorAll('.text-info');
 
 
 //handling funcs
+function clearAfter() {
+    for(let i in infoArr) infoArr[i].value = '';
+}
 function setInfo(list) {
     for(let i = 0; i < list.length; i++){
         infoArr[i].value = list[i].innerText;
@@ -44,8 +47,7 @@ function createInfoRow(){
             }
         }
     }
-    //ol.append(li);
-    //console.log('Ol child nodes - ', ol.childNodes.length);
+    clearAfter();
 }
 function updateInfo(){
     for(let iter = 1; iter <= ol.childNodes.length-1; iter++){
@@ -55,6 +57,7 @@ function updateInfo(){
             ol.childNodes[iter].childNodes[3].innerText = infoArr[3].value;
         }
     }
+    clearAfter();
 }
 function deleteInfoRow(){
     for(let iter = 1; iter <= ol.childNodes.length-1; iter++){
@@ -62,9 +65,11 @@ function deleteInfoRow(){
             ol.childNodes[iter].remove();
         }
     }
+    clearAfter();
 }
 
 //listeners
 create.addEventListener('click', createInfoRow);
 update.addEventListener('click', updateInfo);
 del.addEventListener('click', deleteInfoRow);
+
