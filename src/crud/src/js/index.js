@@ -4,7 +4,11 @@ const update = document.querySelector('.upd');
 const del = document.querySelector('.del');
 const ol = document.querySelector('ol');
 const infoArr = document.querySelectorAll('.text-info');
-let state = [];
+const radioArr = document.querySelectorAll("input[name=togl]");
+let togl = 'localstore';
+let keys = [];
+let readObj;
+let db;
 let newRow;
 
 
@@ -27,7 +31,7 @@ function createInfoRow(){
     }
     let li = document.createElement('li');
     li.setAttribute('onclick', 'setInfo(this.childNodes)');
-    for(let i = 0; i < 4; i++) {
+    for(let i = 0; i < 6; i++) {
         let div = document.createElement('div');
         div.className = 'info';
         div.append(infoArr[i].value);// change
@@ -57,6 +61,8 @@ function updateInfo(){
             ol.childNodes[iter].childNodes[1].innerText = infoArr[1].value;
             ol.childNodes[iter].childNodes[2].innerText = infoArr[2].value;
             ol.childNodes[iter].childNodes[3].innerText = infoArr[3].value;
+            ol.childNodes[iter].childNodes[4].innerText = infoArr[4].value;
+            ol.childNodes[iter].childNodes[5].innerText = infoArr[5].value;
         }
     }
     clearAfter();
@@ -69,23 +75,51 @@ function deleteInfoRow(){
     }
     clearAfter();
 }
-/*function stateToLS(){
-    localStorage.
-}*/
-//localstorage handling funcs
+function clearAll() {
+    const nodeListLength = ol.childNodes.length-1;
+    for(let iter = 1; iter <= nodeListLength; iter++){
+            ol.childNodes[1].remove();
+    }
+}
+//IndexedDB func
+function dbReady() {
+    let openRequest = indexedDB.open("store", 1);
+
+    openRequest.onupgradeneeded = e => {
+        db = e.target.result;
+
+        const dbState = db.createObjectStore('persons', {keyPath: 'id'});
+        console.log("Upgrade", openRequest.onupgradeneeded);
+    };
+
+    openRequest.onerror = function() {
+        console.error("Error", openRequest.error);
+    };
+
+    openRequest.onsuccess = e => {
+        db = e.target.result;
+        console.log("Sucess", openRequest.onsuccess);
+        readIndexedDB();
+    };
+    return true;
+}
+//create USER
 function createNewUser(){
     const newPerson = {
         id : infoArr[0].value,
         fname: infoArr[1].value,
         lname: infoArr[2].value,
-        age: infoArr[3].value
+        age:   infoArr[3].value,
+        email: infoArr[4].value,
+        phone: infoArr[5].value
     }
     console.log(newPerson);
-    state.push(newPerson);
-    localStorage.setItem('person_state', JSON.stringify(state));
+    keys.push(newPerson.id);
     return newPerson;
 }
-function createInfoRowFromState(stateObj) {
+
+
+function createInfoRowFrom(stateObj) {
     let li = document.createElement('li');
     li.setAttribute('onclick', 'setInfo(this.childNodes)');
     for(let i of ['id', 'fname', 'lname', 'age']) {
@@ -111,48 +145,106 @@ function createInfoRowFromState(stateObj) {
         }
     }
 }
+
 function readLocalStore(){
-    state = JSON.parse(localStorage.getItem('person_state'));
-    for(let iter in state) createInfoRowFromState(state[iter]);
+    if(localStorage !== undefined){
+        for (key in localStorage) {
+            if (Object.prototype.hasOwnProperty.call(localStorage, key)) {
+                readObj = JSON.parse(localStorage.getItem(key));
+                createInfoRowFrom(readObj);
+            }
+        }
+    } 
 }
-function deleteUser(s){
-    for(let i in s){
-        if(s[i].id == infoArr[0].value) s.splice(i, 1)
-    }
-    localStorage.setItem('person_state', JSON.stringify(s));
-}
-function updateUser(s){
-    for(let i in s){
-        console.log(s[i]);
-        if(s[i].id == infoArr[0].value){
-            s[i].fname = infoArr[1].value;
-            s[i].lname = infoArr[2].value;
-            s[i].age = infoArr[3].value;
+
+function readIndexedDB(){
+    console.log(db);
+    const objStore = db.transaction('persons').objectStore('persons');
+    const allPeople = objStore.getAll();
+    allPeople.onsuccess = function() {
+        //console.log('This ', allPeople.result);
+        for(let readObj of allPeople.result){
+            createInfoRowFrom(readObj);
         }
     }
-    localStorage.setItem('person_state', JSON.stringify(s));
 }
 
+function addTo(pers){
+    //add to LocalStorage 
+    if(togl === 'localstore'){
+        const persKey = pers.id;
+        localStorage.setItem(persKey, JSON.stringify(pers));
+    }
+    //add to IndexedDB
+    else{
+        const tx = db.transaction('persons', 'readwrite')
+        const persList = tx.objectStore('persons')
+        persList.add(pers);
+    }
+}
+
+function updateIn(key) {
+    if(keys.includes(key)){
+        //update in LocalStorage 
+        if(togl === 'localstore'){
+            if(key in localStorage){
+                const updPers = createNewUser();
+                localStorage.setItem(key, JSON.stringify(updPers))
+            }
+        }
+        //update in IndexedDB
+        else{
+            const tx = db.transaction('persons', 'readwrite')
+            const persList = tx.objectStore('persons')
+            const updPers = createNewUser()
+            persList.put(updPers);
+        }
+    } else {
+        alert('ID not defined');
+    }
+}
+
+function deletFrom(key) {
+    //del from LocalStorage 
+    if(togl === 'localstore'){
+        localStorage.removeItem(key);
+    }
+    //del from IndexedDB
+    else{
+        const tx = db.transaction('persons', 'readwrite')
+        const persList = tx.objectStore('persons')
+        persList.delete(key);
+    }
+}
 
 //listeners
+window.addEventListener('DOMContentLoaded', readLocalStore);
 create.addEventListener('click', ()=>{
     newRow = createNewUser();
-    createInfoRow(newRow);
+    if(infoArr[0].value !== '') {
+        addTo(newRow);
+        createInfoRow(newRow);
+    }
 });
 update.addEventListener('click', ()=>{
-    if(state != []) updateUser(state);
+    updateIn(infoArr[0].value);
     updateInfo()});
 del.addEventListener('click', ()=>{
-    if(state != []) deleteUser(state);
+    if(localStorage.length != 0) deletFrom(infoArr[0].value);
     deleteInfoRow();
 });
-read.addEventListener('click', readLocalStore);
-
-module.exports = {
-    clearAfter,
-    setInfo,
-    createInfoRow,
-    updateInfo,
-    deleteInfoRow,
-
+for(let radio of radioArr){
+    radio.addEventListener('change', function() {
+        if(this.checked) {
+            togl = this.value;
+            if(togl === 'indexeddb'){
+                clearAll();
+                dbReady();
+            }else{
+                clearAll();
+                readLocalStore();
+                //db.close();
+            }
+        }
+    });
 }

@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CRUD 1.2</title>
+	<title>CRUD 2.0</title>
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800&display=swap" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="description" content="Моя первая система CRUD на JavaScript">
 	<meta name="author" content="Anton Diachenko">
@@ -11,31 +11,49 @@
 	<meta name="Keywords" content="HTML, JavaScript, CRUD, crudInJS">
 </head>
 <body>
-
 	<!-- @@include('./section1.html')
 	@@include('./section2.html') -->
 	<div class="main-div">
 		<header>
-			<input type="number" name="id" value="" class="text-info" placeholder="ID">
-			<input type="text" name="fn" value=""  class="text-info" placeholder="First name">
-			<input type="text" name="ln" value=""  class="text-info" placeholder="Last name">
-			<input type="number" name="age" value="" class="text-info" placeholder="Age">
-			<input type="button" value="Create" class="inp-btn create">
-			<input type="button" value="Read" class="inp-btn read">
-			<input type="button" value="Update" class="inp-btn upd">
-			<input type="button" value="Delete" class="inp-btn del">
-			<div class="title">ID</div>
-			<div class="title">First Name</div>
-			<div class="title">Last Name</div>
-			<div class="title">Age</div>
-		</header>
+			<div class="radio-group">
+				<label>
+					<input type="radio" value="localstore" name="togl" checked>
+					Local Storage
+					<span></span>
+				</label>
+				<label>
+					<input type="radio" value="indexeddb" name="togl">
+					Indexed DB
+					<span></span>
+				</label>
+			</div>
+			<div class="main-inputs">
+				<input type="number" name="id" value="" class="text-info" placeholder="ID">
+				<input type="text" name="fn" value=""  class="text-info" placeholder="First name">
+				<input type="text" name="ln" value=""  class="text-info" placeholder="Last name">
+				<input type="number" name="age" value="" class="text-info" placeholder="Age">
+				<input type="text" name="email" value="" class="text-info" placeholder="Email">
+				<input type="number" name="phone-numb" value="" class="text-info" placeholder="Phone number">
+				<input type="button" value="Create" class="inp-btn create">
+				<input type="button" value="Update" class="inp-btn upd">
+				<input type="button" value="Delete" class="inp-btn del">	
+			</div>
+			</header>
 		<div class="content">
+            <div class="main-title">
+                <div class="title">ID</div>
+                <div class="title">First Name</div>
+                <div class="title">Last Name</div>
+                <div class="title">Age</div>
+                <div class="title">Email</div>
+                <div class="title">Phone number</div>
+            </div>
 			<ol>
 	
 			</ol>
 		</div>
 	</div>
 	<!-- Scripts -->
-	<script src="js/index.js"></script>
+	<script src="/js/script.js"></script>
 </body>
 </html>
