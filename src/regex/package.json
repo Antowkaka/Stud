@@ -1,0 +1,17 @@
+{
+  "name": "regex",
+  "version": "1.0.0",
+  "description": "regex, practice",
+  "main": "regex.js",
+  "scripts": {
+    "test": "mocha",
+    "test-watch": "mocha --watch"
+  },
+  "author": "Anton Diachenko",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^7.1.1"
+  }
+
+}
