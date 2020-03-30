@@ -411,15 +411,12 @@ describe('Exercise 65, 66, 67, 68, 69, 70', function () {
 		assert.deepEqual(/^([1-9]|1[0-2])\.[0-5][0-9] (am|pm)$/.test('12.30 pm'), true)
 	});
 	it('Exercise 68', function () {
-		assert.deepEqual('23 + 35 ='.replace(/(\d*) \+ (\d*) =/g, (match, p1, p2)=> {
-			const sum = parseInt(p1) + parseInt(p2)
-			return [p1, '+', p2, '=', sum].join(' ')
-		}), '23 + 35 = 58')
+		assert.deepEqual('aafdngd dfdfnndgs ewrwoo erqf efdfag32'.replace(/\s*\w*([a-z]+)\1\w*\s*/g, ''), 'erqf efdfag32')
+	});
+	it('Exercise 69', function () {
+		assert.deepEqual('dsf xxx xxx sd'.replace(/( [a-z]+)\1/g, '$1'), 'dsf xxx sd')
+	});
+	it('Exercise 70', function () {
+		assert.deepEqual('dsf xxx xxx xxx xxx xxx sd'.replace(/( [a-z]+)(?= [a-z]+)\1/g, ''), 'dsf xxx sd')
 	});
 })
-
-
-
-
-
-

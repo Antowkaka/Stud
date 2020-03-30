@@ -37,23 +37,6 @@ function exerciseFiftyFour(str){
 	return sum;
 }
 
-
-/*console.log("2aaa{{текст}}b{{текст}}текст45'321{{текст}}'".replace(/(?!\{)([а-яА-Я]*)(?=})/g, (text)=>{
-	return text.split('').reverse().join('')
-}));*/
-
-//console.log("2aaa{{текст}}b{{текст}}bsdf45'321{{текст}}'".match(/\{\{(текст)}}/g))
-console.log('aafdngd dfdfnndgs ewrwoo erqppf'.replace(/([a-zA-Z])([a-zA-Z])/g, (p1, p2)=>{
-	if(p1.split('')[0] === p1.split('')[1]){
-		console.log(p1)
-		return ''
-	}
-}))
-
-console.log('dsf xxx xxx sd'.replace(/(.*) (.*)/g, (p1)=>{
-	console.log(p1)
-}))
-
 module.exports = {
 	resultOutput,
 	exerciseFourteen,
